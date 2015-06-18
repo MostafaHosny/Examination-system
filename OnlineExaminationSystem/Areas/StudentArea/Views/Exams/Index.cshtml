@@ -1,0 +1,122 @@
+﻿@model OnlineExaminationSystem.Areas.StudentArea.Models.ExamViewModel
+
+@{
+    ViewBag.Title = "Exams";
+}
+
+<h2>Exams</h2>
+@if(Model.Registrations.Count == 0)
+{
+   <h2>No Registrations or Courses  Assigned to You </h2> 
+}
+@*<select class="form-control select-reg" data-url="@Url.Action("Select")">
+        <option> -- Select Course -- </option>
+        @foreach (var reg in Model.Registrations.OrderBy(r => r.Semester.SemesterTitle).OrderBy(r => r.Course.Title))
+        {
+            <option value="@reg.RegistrationId">@reg.Semester.SemesterTitle / @reg.Course.Title</option>
+        }
+
+    </select>*@
+<hr />
+@if (Model.Registrations != null)
+{
+    foreach (var reg in Model.Registrations)
+    {
+
+        <input type="hidden" value="@reg.RegistrationId" id="selectedReg" />
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>@(string.Format("{0} / {1} ", reg.Semester.SemesterTitle, reg.Course.Title))</h3>
+
+            </div>
+            <div class="panel-body">
+
+                @{
+        int examCounter = 1;
+        Model.SelectedExamId = string.IsNullOrWhiteSpace(Model.SelectedExamId) ? "" : Model.SelectedExamId;
+                }
+                @if (reg.Exams.Count > 0)
+                {
+
+                    foreach (var exam in reg.Exams)
+                    {
+
+                        if (DateTime.Compare(exam.EndDate, DateTime.Now) > 0 && DateTime.Compare(exam.StartDate, DateTime.Now) < 0)
+                         {
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel tree @(exam.ExamId.Equals(Model.SelectedExamId,StringComparison.OrdinalIgnoreCase) ? "" : "minimize") panel-primary">
+                                        <div class="panel-heading">
+                                            Exam( @(examCounter++) ) -> from: @exam.StartDate.ToString() to: @exam.EndDate.ToString() Score : @exam.TotalScore  Duration : @exam.Duration (Min)  Type: @exam.ExamType
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    @Html.ActionLink("Take Exam", "Generate", new { id = exam.ExamId })
+                                                </div>
+                                                <div class="col-md-12">
+                                                    @Html.ActionLink("Generate Demo Exam ", "GenerateDemo", new { id = exam.ExamId })
+                                                </div>
+                                                @if (exam.ExamId.Equals(Model.SelectedExamId, StringComparison.OrdinalIgnoreCase) && ViewData.ModelState.Values.Any(ms => ms.Errors.Count > 0))
+                                                {
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="alert alert-danger" role="alert">
+
+                                                                @foreach (var modelState in ViewData.ModelState.Values)
+                                                                {
+                                                                    foreach (var err in modelState.Errors)
+                                                                    {
+                                                                        <div>
+                                                                            <span class="fa fa-warning" aria-hidden="true"></span>
+                                                                            <span class="sr-only">Error:</span>
+                                                                            @err.ErrorMessage
+                                                                        </div>
+                                                                    }
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+                else
+                {
+                    <h3>there's no current exams for this course</h3>
+                }
+            </div>
+        </div>
+    }
+}
+else
+{
+     <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>there's no current exams</h3>
+            </div>
+          
+ </div>
+}
+@section scripts
+{
+    <script>
+        (function () {
+            var selectedReg = $('#selectedReg').val()
+            if (selectedReg && selectedReg.length > 0) {
+                $('.select-reg').val(selectedReg);
+            }
+            $('.select-reg').change(function () {
+                var $this = $(this);
+                if ($this.val().length > 0) {
+                    window.location = $this.data('url') + "/" + $('#ExamVersionId').val();
+                }
+            }); 
+        })();
+    </script>
+}

@@ -1,0 +1,90 @@
+﻿@model OnlineExaminationSystem.Models.ExamVersionViewModel
+@{
+    ViewBag.Title = "Exam";
+    int questionNumber = 1;
+}
+
+<h2>Exam</h2>
+@using (Html.BeginForm("Submit", "Exams", FormMethod.Post))
+{
+    Html.AntiForgeryToken();
+    
+    if (Model.MCQQuestions.Count > 0)
+    {
+        <fieldset>
+            <legend>MCQ Questions</legend>
+            @foreach (var q in Model.MCQQuestions)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading"><span class="text-primary">Q (@(questionNumber++)):</span>&nbsp;@q.QuestionText</div>
+                    <div class="panel-body">
+                        @foreach (var answer in q.Answers)
+                        {
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="@q.QuestionVersionId" value="@answer.AnswerVersionId">
+                                    @answer.AnswerText
+                                </label>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            }
+        </fieldset>
+    }
+    if (Model.CompleteQuestions.Count > 0)
+    {
+        <fieldset>
+            <legend>Complete Questions</legend>
+            @foreach (var q in Model.CompleteQuestions)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading"><span class="text-primary">Q (@(questionNumber++)):</span>&nbsp;@q.QuestionText</div>
+                    <div class="panel-body">
+                        @foreach (var answer in q.Answers)
+                        {
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="@q.QuestionVersionId" value="@answer.AnswerVersionId">
+                                    @answer.AnswerText
+                                </label>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            }
+        </fieldset>
+    }
+    if (Model.TrueFalseQuestions.Count > 0)
+    {
+        <fieldset>
+            <legend>True/False Questions</legend>
+            @foreach(var q in Model.TrueFalseQuestions)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading"><span class="text-primary">Q (@(questionNumber++)):</span>&nbsp;@q.QuestionText</div>
+                    <div class="panel-body">
+                        @foreach (var answer in q.Answers)
+                        {
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="@q.QuestionVersionId" value="@answer.AnswerVersionId">
+                                    @answer.AnswerText
+                                </label>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            }
+        </fieldset>
+    }
+
+    @Html.HiddenFor(model => model.ExamVersionId);
+    <div class="container">
+        <button value="Done" type="button" class="btn btn-primary" onclick="window.location='@Url.Action("Index")'">Done</button>
+        @*<input type="button" value="done"  class="right btn btn-primary" />*@
+    </div>
+}

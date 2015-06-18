@@ -1,0 +1,61 @@
+﻿@model AnswerViewModel
+
+@{
+    ViewBag.Title = "Answers";
+    bool isTrueFalseQuestion = Model.SelectedQuestion.Type.Equals(OES.Model.Examination.QuestionType.TrueFalse);
+}
+
+<h2>Answers</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span style="font-weight:bold">Q: </span> @Model.SelectedQuestion.QuestionText
+        @if (!isTrueFalseQuestion)
+        {
+            <p>
+                @Html.ActionLink("Add Answer", "Create", new { id = Model.SelectedQuestion.QuestionId })
+            </p>
+        }
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Text
+                                </th>
+                                <th>
+                                    Is Correct Answer
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.SelectedQuestion.Answers)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AnswerText)
+                                    </td>
+                                    <td>
+                                        @(item.IsCorrectAnswer ? "Correct" : "Wrong")
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.AnswerId })
+                                        @if (!isTrueFalseQuestion)
+                                        {
+                                          <span>|</span><a href="#" class="delete-button" data-delete-url="@Url.Action("Delete", new { id = item.AnswerId })">Delete</a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

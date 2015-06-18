@@ -1,0 +1,112 @@
+﻿@model IEnumerable<OES.Model.Examination.Semester>
+
+@{
+    ViewBag.Title = "Semesters";
+    ViewBag.Page = "semester";
+}
+
+
+<select class="form-control select-reg" id="semesterName" data-val="true" onchange="redirect (this.value)" data-url="@Url.Action("SelectSemestersName")">
+    <option value="All">All</option>
+    <option value="Fall">Fall</option>
+    <option value="Spring">Spring</option>
+    <option value="Summer">Summer</option>
+    @*@foreach (var semester in Model)
+    {
+        <option value="@reg.RegistrationId">@reg.Semester.SemesterTitle / @reg.Course.Title</option>
+    }*@
+
+</select>
+
+    @*<select class="form-control select-year" data-url="@Url.Action("SelectSemestersYear")">
+        <option> -- select course -- </option>
+        @foreach (var reg in Model.OrderBy(r => r.SemesterYear) )
+        {
+            <option value="@reg.SemesterYear">@reg.SemesterYear</option>  @*/ @reg.course.title*@
+    @*}*@
+
+    @*</select>*@
+
+
+
+    <p>
+        @Html.ActionLink("Add New Semester", "Create")
+
+    </p>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                    <thead>
+                        <tr>
+                            <th>
+
+                                @Html.DisplayNameFor(model => model.SemesterTitle)
+                            </th>
+
+                     
+                            <th>
+                                @Html.DisplayNameFor(model => model.StartDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.EndDate)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SemesterTitle)
+                                </td>
+                           
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.StartDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EndDate)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.SemesterId }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.SemesterId }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.SemesterId })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+   @section scripts
+{
+    <script>
+        @*(function () {
+            var selectedReg = '@ViewBag.value';
+            if (selectedReg && selectedReg.length > 0) {
+                $('.select-reg').val(selectedReg);
+            }*@
+        //    $('.select-reg').change(function () {
+        //        var $this = $(this);
+        //        if ($this.val().length > 0) {
+    
+        //            window.location = $this.data('url') + "/" + $this.val();
+        //        }
+        //    });
+        //})();
+
+        function redirect (semestervalue)
+        {
+            window.location.href = '@Url.Action("SelectSemestersName")/' + '?SelectedSemesterName=' + semestervalue;
+          
+        }
+        $(document).ready(function () {
+
+            var selectedReg = '@ViewBag.value'
+            $('.select-reg').val(selectedReg);
+        });
+    </script>
+}

@@ -1,0 +1,229 @@
+﻿@using OES.Data
+@using OES.Model.Examination
+@model ExamViewModel
+
+@{
+    ViewBag.Title = "Exams";
+}
+
+<h2>Exams</h2>
+
+<select class="form-control select-reg" data-url="@Url.Action("Select")">
+    <option> -- Select Course -- </option>
+    @foreach (var reg in Model.Registrations.OrderBy(r => r.Semester.SemesterTitle).OrderBy(r => r.Course.Title))
+    {
+        <option value="@reg.RegistrationId">@reg.Semester.SemesterTitle / @reg.Course.Title</option>
+    }
+
+</select>
+<hr />
+@if (Model.SelectedRegistration != null)
+{
+    <input type="hidden" value="@Model.SelectedRegistration.RegistrationId" id="selectedReg" />
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>@(string.Format("{0} / {1} / Exams ({2})", Model.SelectedRegistration.Semester.SemesterTitle, Model.SelectedRegistration.Course.Title, Model.SelectedRegistration.Exams.Count))</h3>
+            @Html.ActionLink("Add Exam", "Create", new { id = Model.SelectedRegistration.RegistrationId })
+        </div>
+        <div class="panel-body">
+           
+            @{
+    int examCounter = 1;
+    Model.SelectedExamId = string.IsNullOrWhiteSpace(Model.SelectedExamId) ? "" : Model.SelectedExamId;
+            }
+            
+            @foreach (var exam in Model.SelectedRegistration.Exams)
+            {
+                var AllChapters = Model.SelectedRegistration.Chapters;       
+                @*@exam.Registration.Students.Select(q => q.Student.Registrations.Select(a => a.Registration.ExamVersions.Select(b=> b.StudentScore)))*@
+               
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel tree @(exam.ExamId.Equals(Model.SelectedExamId,StringComparison.OrdinalIgnoreCase) ? "" : "minimize") panel-primary">
+                            <div class="panel-heading">
+                                Exam( @(examCounter++) ) -> from: @exam.StartDate.ToString() to: @exam.EndDate.ToString() Score : @exam.TotalScore  Duration : @exam.Duration (Min) Type : @exam.ExamType
+                            </div>
+                            <div class="panel-body">
+                                <fieldset>
+                                    <legend>MCQ Questions</legend>
+
+                                    <div class="row">
+                                        <div class="col-md-4">@Html.LabelFor(modelItem => exam.MCQHigh)</div>
+                                        <div class="col-md-2">@exam.MCQHigh</div>
+                                        <div class="col-md-4">@Html.LabelFor(modelItem => exam.MCQHighScore)</div>
+                                        <div class="col-md-2">@exam.MCQHighScore</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">@Html.LabelFor(modelItem => exam.MCQMedium)</div>
+                                        <div class="col-md-2">@exam.MCQMedium</div>
+                                        <div class="col-md-4">@Html.LabelFor(modelItem => exam.MCQMediumScore)</div>
+                                        <div class="col-md-2">@exam.MCQMediumScore</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">@Html.LabelFor(modelItem => exam.MCQLow)</div>
+                                        <div class="col-md-2">@exam.MCQLow</div>
+                                        <div class="col-md-4">@Html.LabelFor(modelItem => exam.MCQLowScore)</div>
+                                        <div class="col-md-2">@exam.MCQLowScore</div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>Complete Questions</legend>
+
+                                    <div class="row">
+                                        <div class="col-md-4">@Html.LabelFor(modelItem => exam.CompleteHigh)</div>
+                                        <div class="col-md-2">@exam.CompleteHigh</div>
+                                        <div class="col-md-4">@Html.LabelFor(modelItem => exam.CompleteHighScore)</div>
+                                        <div class="col-md-2">@exam.CompleteHighScore</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">@Html.LabelFor(modelItem => exam.CompleteMedium)</div>
+                                        <div class="col-md-2">@exam.CompleteMedium</div>
+                                        <div class="col-md-4">@Html.LabelFor(modelItem => exam.CompleteMediumScore)</div>
+                                        <div class="col-md-2">@exam.CompleteMediumScore</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">@Html.LabelFor(modelItem => exam.CompleteLow)</div>
+                                        <div class="col-md-2">@exam.CompleteLow</div>
+                                        <div class="col-md-4">@Html.LabelFor(modelItem => exam.CompleteLowScore)</div>
+                                        <div class="col-md-2">@exam.CompleteLowScore</div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>TrueFalse Questions</legend>
+
+                                    <div class="row">
+                                        <div class="col-md-4">@Html.LabelFor(modelItem => exam.TrueFalseHigh)</div>
+                                        <div class="col-md-2">@exam.TrueFalseHigh</div>
+                                        <div class="col-md-4">@Html.LabelFor(modelItem => exam.TrueFalseHighScore)</div>
+                                        <div class="col-md-2">@exam.TrueFalseHighScore</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">@Html.LabelFor(modelItem => exam.TrueFalseMedium)</div>
+                                        <div class="col-md-2">@exam.TrueFalseMedium</div>
+                                        <div class="col-md-4">@Html.LabelFor(modelItem => exam.TrueFalseMediumScore)</div>
+                                        <div class="col-md-2">@exam.TrueFalseMediumScore</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">@Html.LabelFor(modelItem => exam.TrueFalseLow)</div>
+                                        <div class="col-md-2">@exam.TrueFalseLow</div>
+                                        <div class="col-md-4">@Html.LabelFor(modelItem => exam.TrueFalseLowScore)</div>
+                                        <div class="col-md-2">@exam.TrueFalseLowScore</div>
+                                    </div>
+                                </fieldset>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">All Chapters</div>
+                                            <div class="panel-body">
+                                         
+                                                @{
+                                                    
+                                                     
+                                                    OESData db = new OESData();
+                                                    var allExamChapters = db.ExamChapters.Where(e => e.ExamId == exam.ExamId).ToList();
+                                                    var mychap = db.Chapters.Where(a => a.ChapterId==null).ToList();
+                             
+                                                    foreach ( var examchap in allExamChapters )
+                                                    {
+                                                        var temp = db.Chapters.Where(a=>a.ChapterId == examchap.ChapterId).FirstOrDefault();
+                                                        if (temp != null)
+                                                        {
+                                                            mychap.Add(temp);
+                                                       
+                                                        }
+                                                    }
+
+                                                    var allchapter = db.Chapters.Where(a => a.RegistrationId == Model.SelectedRegistration.RegistrationId).ToList();
+                                                foreach (var myChapter in allchapter.Except(mychap))
+                                                {
+                                                       
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            @myChapter.Title
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            @Html.ActionLink("Add", "AddChapter", new { myChapterId = myChapter.ChapterId , myexamId = exam.ExamId })
+
+                                                        </div>
+
+                                                    </div>
+                                                }
+
+                                                    }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">Chapters included</div>
+                                            <div class="panel-body">
+                                                   @{var newallExamChapters = db.ExamChapters.Where(e => e.ExamId == exam.ExamId).ToList();}
+                                                @foreach (var examchapter in newallExamChapters)
+                                                { 
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            @examchapter.ChapterName
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            @Html.ActionLink("Remove", "RemoveChapter", new { mychapterId = examchapter.ChapterId, myexamId = exam.ExamId})
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                
+                                @if (exam.ExamId.Equals(Model.SelectedExamId, StringComparison.OrdinalIgnoreCase) && ViewData.ModelState.Values.Any(ms => ms.Errors.Count > 0))
+                                {
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="alert alert-danger" role="alert">
+
+                                                @foreach (var modelState in ViewData.ModelState.Values)
+                                                {
+                                                    foreach (var err in modelState.Errors)
+                                                    {
+                                                        <div>
+                                                            <span class="fa fa-warning" aria-hidden="true"></span>
+                                                            <span class="sr-only">Error:</span>
+                                                            @err.ErrorMessage
+                                                        </div>
+                                                    }
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a href="#" class="delete-button" data-delete-url="@Url.Action("Delete", new { id = exam.ExamId })">Delete</a> |
+                                        @Html.ActionLink("Generate", "Generate", new { id = exam.ExamId })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+@section scripts
+{
+    <script>
+        (function () {
+            var selectedReg = $('#selectedReg').val()
+            if (selectedReg && selectedReg.length > 0) {
+                $('.select-reg').val(selectedReg);
+            }
+            $('.select-reg').change(function () {
+                var $this = $(this);
+                if ($this.val().length > 0) {
+                    window.location = $this.data('url') + "/" + $this.val();
+                }
+            });
+        })();
+    </script>
+}

@@ -1,0 +1,17 @@
+﻿@model OES.Model.Examination.Registration
+
+@{
+    ViewBag.Title = "registration";
+    ViewBag.Page = "registrations";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Registration</h4>
+    <hr />
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CourseStudentId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

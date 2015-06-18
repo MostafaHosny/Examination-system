@@ -1,0 +1,91 @@
+﻿@model OnlineExaminationSystem.Areas.InstructorArea.Models.ChapterViewModel
+
+@{
+    ViewBag.Title = "Chapters";
+}
+
+
+<h2>Chapters</h2>
+
+<select class="form-control select-reg" data-url="@Url.Action("Select")">
+    <option> -- Select Course -- </option>
+    @foreach (var reg in Model.Registrations.OrderBy(r => r.Semester.SemesterTitle).OrderBy(r => r.Course.Title))
+    {
+        <option value="@reg.RegistrationId">@reg.Semester.SemesterTitle / @reg.Course.Title</option>
+    }
+
+</select>
+<hr />
+@if (Model.SelectedRegisteration != null)
+{
+    <input type="hidden" value="@Model.SelectedRegisteration.RegistrationId" id="selectedReg" />
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>@(string.Format("{0} / {1} / Chapters ({2})", Model.SelectedRegisteration.Semester.SemesterTitle, Model.SelectedRegisteration.Course.Title, Model.SelectedRegisteration.Chapters.Count))</h3>
+            @Html.ActionLink("Add Chapter", "Create", new { id = Model.SelectedRegisteration.RegistrationId })
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        #
+                                    </th>
+                                    <th>
+                                        Title
+                                    </th>
+                                    <th>
+                                        Overview
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.SelectedRegisteration.Chapters.OrderBy(c => c.Number))
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Number)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Title)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Overview)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.ChapterId }) |
+                                            @Html.ActionLink("Questions (" + item.Questions.Count + ")", "Index", "Questions", routeValues: new { id = item.ChapterId }, htmlAttributes: null) |
+                                            <a href="#" class="delete-button" data-delete-url="@Url.Action("Delete", new { id = item.ChapterId })">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section scripts
+{
+    <script>
+        (function () {
+            var selectedReg = $('#selectedReg').val()
+            if (selectedReg && selectedReg.length > 0)
+            {
+                $('.select-reg').val(selectedReg);
+            }
+            $('.select-reg').change(function () {
+                var $this = $(this);
+                if ($this.val().length > 0) {
+                    window.location = $this.data('url') + "/" + $this.val();
+                }
+            });
+        })();
+    </script>
+}

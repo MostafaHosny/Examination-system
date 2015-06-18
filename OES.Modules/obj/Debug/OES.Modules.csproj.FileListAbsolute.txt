@@ -1,0 +1,98 @@
+D:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Modules.dll.config
+D:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Modules.dll
+D:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Modules.pdb
+D:\Final Gproject\OES\OES.Modules\bin\Debug\EntityFramework.dll
+D:\Final Gproject\OES\OES.Modules\bin\Debug\EntityFramework.SqlServer.dll
+D:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Data.dll
+D:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Model.dll
+D:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Data.pdb
+D:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Model.pdb
+D:\Final Gproject\OES\OES.Modules\bin\Debug\EntityFramework.xml
+D:\Final Gproject\OES\OES.Modules\bin\Debug\EntityFramework.SqlServer.xml
+D:\Final Gproject\OES\OES.Modules\obj\Debug\OES.Modules.csprojResolveAssemblyReference.cache
+D:\Final Gproject\OES\OES.Modules\obj\Debug\OES.Modules.dll
+D:\Final Gproject\OES\OES.Modules\obj\Debug\OES.Modules.pdb
+E:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Modules.dll.config
+E:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Modules.dll
+E:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Modules.pdb
+E:\Final Gproject\OES\OES.Modules\bin\Debug\EntityFramework.dll
+E:\Final Gproject\OES\OES.Modules\bin\Debug\EntityFramework.SqlServer.dll
+E:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Data.dll
+E:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Model.dll
+E:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Data.pdb
+E:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Model.pdb
+E:\Final Gproject\OES\OES.Modules\bin\Debug\EntityFramework.xml
+E:\Final Gproject\OES\OES.Modules\bin\Debug\EntityFramework.SqlServer.xml
+E:\Final Gproject\OES\OES.Modules\obj\Debug\OES.Modules.csprojResolveAssemblyReference.cache
+E:\Final Gproject\OES\OES.Modules\obj\Debug\OES.Modules.dll
+E:\Final Gproject\OES\OES.Modules\obj\Debug\OES.Modules.pdb
+Z:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Modules.dll.config
+Z:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Modules.dll
+Z:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Modules.pdb
+Z:\Final Gproject\OES\OES.Modules\bin\Debug\EntityFramework.dll
+Z:\Final Gproject\OES\OES.Modules\bin\Debug\EntityFramework.SqlServer.dll
+Z:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Data.dll
+Z:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Model.dll
+Z:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Data.pdb
+Z:\Final Gproject\OES\OES.Modules\bin\Debug\OES.Model.pdb
+Z:\Final Gproject\OES\OES.Modules\bin\Debug\EntityFramework.xml
+Z:\Final Gproject\OES\OES.Modules\bin\Debug\EntityFramework.SqlServer.xml
+Z:\Final Gproject\OES\OES.Modules\obj\Debug\OES.Modules.csprojResolveAssemblyReference.cache
+Z:\Final Gproject\OES\OES.Modules\obj\Debug\OES.Modules.dll
+Z:\Final Gproject\OES\OES.Modules\obj\Debug\OES.Modules.pdb
+E:\Work\Work apps\OES\OES.Modules\bin\Debug\OES.Modules.dll.config
+E:\Work\Work apps\OES\OES.Modules\bin\Debug\OES.Modules.dll
+E:\Work\Work apps\OES\OES.Modules\bin\Debug\OES.Modules.pdb
+E:\Work\Work apps\OES\OES.Modules\bin\Debug\EntityFramework.dll
+E:\Work\Work apps\OES\OES.Modules\bin\Debug\EntityFramework.SqlServer.dll
+E:\Work\Work apps\OES\OES.Modules\bin\Debug\OES.Data.dll
+E:\Work\Work apps\OES\OES.Modules\bin\Debug\OES.Model.dll
+E:\Work\Work apps\OES\OES.Modules\bin\Debug\OES.Data.pdb
+E:\Work\Work apps\OES\OES.Modules\bin\Debug\OES.Model.pdb
+E:\Work\Work apps\OES\OES.Modules\bin\Debug\EntityFramework.xml
+E:\Work\Work apps\OES\OES.Modules\bin\Debug\EntityFramework.SqlServer.xml
+E:\Work\Work apps\OES\OES.Modules\obj\Debug\OES.Modules.csprojResolveAssemblyReference.cache
+E:\Work\Work apps\OES\OES.Modules\obj\Debug\OES.Modules.dll
+E:\Work\Work apps\OES\OES.Modules\obj\Debug\OES.Modules.pdb
+F:\Final oes\OES\OES.Modules\bin\Debug\OES.Modules.dll.config
+F:\Final oes\OES\OES.Modules\bin\Debug\OES.Modules.dll
+F:\Final oes\OES\OES.Modules\bin\Debug\OES.Modules.pdb
+F:\Final oes\OES\OES.Modules\bin\Debug\EntityFramework.dll
+F:\Final oes\OES\OES.Modules\bin\Debug\EntityFramework.SqlServer.dll
+F:\Final oes\OES\OES.Modules\bin\Debug\OES.Data.dll
+F:\Final oes\OES\OES.Modules\bin\Debug\OES.Model.dll
+F:\Final oes\OES\OES.Modules\bin\Debug\OES.Data.pdb
+F:\Final oes\OES\OES.Modules\bin\Debug\OES.Model.pdb
+F:\Final oes\OES\OES.Modules\bin\Debug\EntityFramework.xml
+F:\Final oes\OES\OES.Modules\bin\Debug\EntityFramework.SqlServer.xml
+F:\Final oes\OES\OES.Modules\obj\Debug\OES.Modules.csprojResolveAssemblyReference.cache
+F:\Final oes\OES\OES.Modules\obj\Debug\OES.Modules.dll
+F:\Final oes\OES\OES.Modules\obj\Debug\OES.Modules.pdb
+C:\Users\BEROO\Desktop\OES\OES.Modules\bin\Debug\OES.Modules.dll.config
+C:\Users\BEROO\Desktop\OES\OES.Modules\bin\Debug\OES.Modules.dll
+C:\Users\BEROO\Desktop\OES\OES.Modules\bin\Debug\OES.Modules.pdb
+C:\Users\BEROO\Desktop\OES\OES.Modules\bin\Debug\EntityFramework.dll
+C:\Users\BEROO\Desktop\OES\OES.Modules\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\BEROO\Desktop\OES\OES.Modules\bin\Debug\OES.Data.dll
+C:\Users\BEROO\Desktop\OES\OES.Modules\bin\Debug\OES.Model.dll
+C:\Users\BEROO\Desktop\OES\OES.Modules\bin\Debug\OES.Data.pdb
+C:\Users\BEROO\Desktop\OES\OES.Modules\bin\Debug\OES.Model.pdb
+C:\Users\BEROO\Desktop\OES\OES.Modules\bin\Debug\EntityFramework.xml
+C:\Users\BEROO\Desktop\OES\OES.Modules\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\BEROO\Desktop\OES\OES.Modules\obj\Debug\OES.Modules.csprojResolveAssemblyReference.cache
+C:\Users\BEROO\Desktop\OES\OES.Modules\obj\Debug\OES.Modules.dll
+C:\Users\BEROO\Desktop\OES\OES.Modules\obj\Debug\OES.Modules.pdb
+C:\Users\Mostafa\Desktop\OES\OES.Modules\bin\Debug\OES.Modules.dll.config
+C:\Users\Mostafa\Desktop\OES\OES.Modules\bin\Debug\OES.Modules.dll
+C:\Users\Mostafa\Desktop\OES\OES.Modules\bin\Debug\OES.Modules.pdb
+C:\Users\Mostafa\Desktop\OES\OES.Modules\bin\Debug\EntityFramework.dll
+C:\Users\Mostafa\Desktop\OES\OES.Modules\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Mostafa\Desktop\OES\OES.Modules\bin\Debug\OES.Data.dll
+C:\Users\Mostafa\Desktop\OES\OES.Modules\bin\Debug\OES.Model.dll
+C:\Users\Mostafa\Desktop\OES\OES.Modules\bin\Debug\OES.Data.pdb
+C:\Users\Mostafa\Desktop\OES\OES.Modules\bin\Debug\OES.Model.pdb
+C:\Users\Mostafa\Desktop\OES\OES.Modules\bin\Debug\EntityFramework.xml
+C:\Users\Mostafa\Desktop\OES\OES.Modules\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Mostafa\Desktop\OES\OES.Modules\obj\Debug\OES.Modules.csprojResolveAssemblyReference.cache
+C:\Users\Mostafa\Desktop\OES\OES.Modules\obj\Debug\OES.Modules.dll
+C:\Users\Mostafa\Desktop\OES\OES.Modules\obj\Debug\OES.Modules.pdb

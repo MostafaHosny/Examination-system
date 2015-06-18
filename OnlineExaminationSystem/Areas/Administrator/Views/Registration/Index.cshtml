@@ -1,0 +1,56 @@
+﻿@model IEnumerable<OES.Model.Examination.Registration>
+
+@{
+    ViewBag.Title = "registration";
+    ViewBag.Page = "registrations";
+}
+
+
+<p>
+    @Html.ActionLink("Add New Registration", "Create")
+</p>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                <thead>
+                    <tr>
+                        <th>
+                            Course
+                        </th>
+                        <th>
+                            Instructor
+                        </th>
+                        <th>
+                            Semester
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Course.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Instructor.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Semester.SemesterTitle)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.RegistrationId }) |
+                                @Html.ActionLink("Students", "Students", new { id = item.RegistrationId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.RegistrationId })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

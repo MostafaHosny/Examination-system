@@ -1,0 +1,170 @@
+﻿@{
+  
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Online Exameniation System</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @Styles.Render("~/Content/font-awesome")
+    @Styles.Render("~/Content/custom")
+    @Styles.Render("~/Content/dataTables")
+    @Styles.Render("~/Content/component")
+    @Styles.Render("~/Content/morris")
+    @Styles.Render("~/Content/jquery.countdown")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+   
+<style type="text/css">
+br { clear: both; }
+.cntSeparator {
+font-size: 54px;
+margin: 10px 7px;
+color: #000;
+}
+.desc { margin: 7px 3px; }
+.desc div {
+float: left;
+font-family: Arial;
+width: 70px;
+margin-right: 65px;
+font-size: 13px;
+font-weight: bold;
+color: #000;
+}
+</style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Student</a>
+            </div>
+            <!-- Login -->
+            @Html.Action("_PartialLogin", "Account", new { area = "" })
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li class="text-center">
+                        <img src="/img/find_user.png" class="user-image img-responsive" />
+                    </li>
+
+
+                    <li>
+                        <a class="@((ViewBag.Page == "course") ? "active-menu" : "")" href="/student"><i class="fa fa-book fa-2x"></i> Courses </a>
+                    </li>
+                    <li>
+                        <a class="@((ViewBag.Page == "chapters") ? "active-menu" : "")" href="/student/chapters"><i class="fa fa-pencil fa-2x"></i> Chapters</a>
+                    </li>
+                    <li>
+                        <a class="@((ViewBag.Page == "exams") ? "active-menu" : "")" href="/student/exams"><i class="fa fa-print fa-2x"></i>Exams</a>
+                    </li>
+                    <li>
+                        <a class="@((ViewBag.Page == "Exams Report") ? "active-menu" : "")" href="/student/exams/StudentReport"><i class="fa fa-list-alt fa-2x" ></i>Exams Report</a>
+                    </li>
+                    <li>
+                        <a class="@((ViewBag.Page == "change password") ? "active-menu" : "")" href="/student/students/edit"><i class="fa fa-list-alt fa-2x"></i>Change Password  </a>
+                    </li>
+
+
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+                @RenderBody()
+                @*<div id="counter"> </div>
+                <div class="desc">
+                    <div>Days</div>
+                    <div>Hours</div>
+                    <div>Minutes</div>
+                    <div>Seconds</div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <div id="counter_2"></div>
+                <div class="desc">
+                    <div>Minutes</div>
+                    <div>Seconds</div>
+                </div>*@
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/dataTables")
+    @Scripts.Render("~/bundles/metisMenu")
+    @Scripts.Render("~/bundles/raphael")
+    @Scripts.Render("~/bundles/morris")
+    @Scripts.Render("~/bundles/custom")
+    @Scripts.Render("~/bundles/component")
+    @Scripts.Render("~/bundles/controls")
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+    </script>
+    <script src="@Url.Content("~/Scripts/jquery.countdown.js")" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            $('#counter').countdown({
+                image: '/images/digits.png',
+                startTime: '01:12:12:00'
+            });
+            var min, sec, dif ,count;
+            min = $('#duration').text();
+            dif = ':';
+            sec = '00';
+            count = pad(Math.floor(min/60), 2) +":"+ pad(min%60, 2)+':00'
+
+            function pad(num, size) {
+                var s = num + "";
+                while (s.length < size) s = "0" + s;
+                return s;
+            }
+            $('#counter_2').countdown({
+                
+                startTime: count,
+                stepTime: 60,
+                format: 'hh:mm:ss',
+                digitImages: 6,
+                digitWidth: 53,
+                digitHeight: 77,
+                timerEnd: function () {
+                    {
+                        document.forms["examform"].submit();
+                    };
+                },
+                image: '/images/digits.png'
+                
+                
+            });
+        });
+    </script>
+
+</body>
+</html>

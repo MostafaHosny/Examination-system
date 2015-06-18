@@ -1,0 +1,81 @@
+﻿@model System.Collections.Generic.List<OES.Model.Examination.Course>
+@{
+    ViewBag.Title = "Courses";
+}
+
+<!-- Portfolio Starts Here -->
+<div class="portfolios" id="portfolio">
+    <div class="container">
+        <h3 class="top-head w_hd">Courses</h3>
+        <span class="line w_l_1">
+            <span class="sub-line w_l_1"></span>
+        </span>
+        <div id="portfoliolist">
+            @foreach (var item in Model)
+            {
+
+                <div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
+                    <div class="portfolio-wrapper">
+                        <a href="index.html" class="b-link-stripe b-animate-go  thickbox">
+                            <div class="port-1">
+                                <h5>@item.Title</h5>
+                                <p>@item.Description</p>
+                            </div>
+                            <div class="b-wrapper">
+                                <h2 class="b-animate b-from-left    b-delay03 "></h2>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- Portfolio Ends Here -->
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+
+            var filterList = {
+
+                init: function () {
+
+                    // MixItUp plugin
+                    // http://mixitup.io
+                    $('#portfoliolist').mixitup({
+                        targetSelector: '.portfolio',
+                        filterSelector: '.filter',
+                        effects: ['fade'],
+                        easing: 'snap',
+                        // call the hover effect
+                        onMixEnd: filterList.hoverEffect()
+                    });
+
+                },
+
+                hoverEffect: function () {
+
+                    // Simple parallax effect
+                    $('#portfoliolist .portfolio').hover(
+                        function () {
+                            $(this).find('.label').stop().animate({ bottom: 0 }, 200, 'easeOutQuad');
+                            $(this).find('img').stop().animate({ top: -30 }, 500, 'easeOutQuad');
+                        },
+                        function () {
+                            $(this).find('.label').stop().animate({ bottom: -40 }, 200, 'easeInQuad');
+                            $(this).find('img').stop().animate({ top: 0 }, 300, 'easeOutQuad');
+                        }
+                    );
+
+                }
+
+            };
+
+            // Run the show!
+            filterList.init();
+
+
+        });
+    </script>
+}

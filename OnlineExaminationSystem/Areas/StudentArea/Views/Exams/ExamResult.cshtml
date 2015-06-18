@@ -1,0 +1,253 @@
+﻿@model OnlineExaminationSystem.Models.ExamVersionViewModel
+@{
+    ViewBag.Title = "Exam";
+    int questionNumber = 1;
+    int correctMCQ = Model.MCQQuestions.Count(q => q.Answers.Any(a => a.IsThisUserAnswer && a.IsCorrectAnswer));
+    int correctComplete = Model.CompleteQuestions.Count(q => q.Answers.Any(a => a.IsThisUserAnswer && a.IsCorrectAnswer));
+    int correctTF = Model.TrueFalseQuestions.Count(q => q.Answers.Any(a => a.IsThisUserAnswer && a.IsCorrectAnswer));
+}
+
+<h2>Exam Result</h2>
+<div class="panel panel-info">
+    <div class="panel-heading">Summary</div>
+    <div class="panel-body">
+        <div class="container">
+            <div class="row text-primary">
+                <div class="col-md-2"><strong>Total Exam Score</strong></div>
+                <div class="col-md-1">@(Model.TotalScore)</div>
+                <div class="col-md-2"><strong>Your Score</strong></div>
+                <div class="col-md-1">@(Model.UserScore)</div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Total Quesions</strong></div>
+                <div class="col-md-1">@(Model.MCQQuestions.Count + Model.CompleteQuestions.Count + Model.TrueFalseQuestions.Count)</div>
+                <div class="col-md-2"><strong>MCQ</strong></div>
+                <div class="col-md-1">@(Model.MCQQuestions.Count)</div>
+                <div class="col-md-2"><strong>Complete</strong></div>
+                <div class="col-md-1">@(Model.CompleteQuestions.Count)</div>
+                <div class="col-md-2"><strong>True/False</strong></div>
+                <div class="col-md-1">@(Model.TrueFalseQuestions.Count)</div>
+            </div>
+            <div class="row text-success">
+                <div class="col-md-2"><strong>Correct Answers</strong></div>
+                <div class="col-md-1">@(correctMCQ + correctComplete + correctTF)</div>
+                <div class="col-md-2"><strong>MCQ</strong></div>
+                <div class="col-md-1">@(correctMCQ)</div>
+                <div class="col-md-2"><strong>Complete</strong></div>
+                <div class="col-md-1">@(correctComplete)</div>
+                <div class="col-md-2"><strong>True/False</strong></div>
+                <div class="col-md-1">@(correctTF)</div>
+            </div>
+            <div class="row text-danger">
+                <div class="col-md-2"><strong>Wrong Answers</strong></div>
+                <div class="col-md-1">@((Model.MCQQuestions.Count + Model.CompleteQuestions.Count + Model.TrueFalseQuestions.Count) - (correctMCQ + correctComplete + correctTF))</div>
+                <div class="col-md-2"><strong>MCQ</strong></div>
+                <div class="col-md-1">@(Model.MCQQuestions.Count - correctMCQ)</div>
+                <div class="col-md-2"><strong>Complete</strong></div>
+                <div class="col-md-1">@(Model.CompleteQuestions.Count - correctComplete)</div>
+                <div class="col-md-2"><strong>True/False</strong></div>
+                <div class="col-md-1">@(Model.TrueFalseQuestions.Count - correctTF)</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@if (Model.MCQQuestions.Count > 0)
+{
+    <fieldset>
+        <legend>MCQ Questions</legend>
+        @foreach (var q in Model.MCQQuestions)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="text-primary">Q (@(questionNumber++)):</span>&nbsp;<span>@q.QuestionText</span>
+                    <span>[Score: @(Model.GetQuestionScore(q))]</span>
+                    <span>[Your Score: @(Model.GetUserScore(q))]</span>
+                </div>
+                <div class="panel-body">
+                    @foreach (var answer in q.Answers)
+                    {
+                        if (answer.IsCorrectAnswer && answer.IsThisUserAnswer)
+                        {
+                            <div class="text-success">
+                                <div class="col-md-1">  <i class="fa fa-dot-circle-o"></i></div>
+                                <div class="col-md-7">
+                                    <span>@answer.AnswerText</span>
+                                </div>
+                                <div class="col-md-4">
+                                    [Correct Answer]
+                                </div>
+                            </div>
+                        }
+                        else if (answer.IsCorrectAnswer)
+                        {
+                            <div class="text-success">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-7">
+                                    <span>@answer.AnswerText</span>
+                                </div>
+                                <div class="col-md-4">
+                                    [Correct Answer]
+                                </div>
+                            </div>
+                        }
+                        else if (answer.IsThisUserAnswer)
+                        {
+                            <div class="text-danger">
+                                <div class="col-md-1">  <i class="fa fa-dot-circle-o"></i></div>
+                                <div class="col-md-7">
+                                    <del>@answer.AnswerText</del>
+                                </div>
+                                <div class="col-md-4">[Wrong Answer]</div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="text-danger">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-7">
+                                    <span>@answer.AnswerText</span>
+                                </div>
+                                <div class="col-md-4">[Wrong Answer]</div>
+                            </div>
+                        }
+
+                    }
+                </div>
+            </div>
+        }
+    </fieldset>
+}
+@if (Model.CompleteQuestions.Count > 0)
+{
+    <fieldset>
+        <legend>Complete Questions</legend>
+        @foreach (var q in Model.CompleteQuestions)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="text-primary">Q (@(questionNumber++)):</span>&nbsp;
+                    <span>@q.QuestionText</span>
+                    <span>[Score: @(Model.GetQuestionScore(q))]</span>
+                    <span>[Your Score: @(Model.GetUserScore(q))]</span>
+                </div>
+                <div class="panel-body">
+                    @foreach (var answer in q.Answers)
+                    {
+                        if (answer.IsCorrectAnswer && answer.IsThisUserAnswer)
+                        {
+                            <div class="text-success">
+                                <div class="col-md-1">  <i class="fa fa-dot-circle-o"></i></div>
+                                <div class="col-md-7">
+                                    <span>@answer.AnswerText</span>
+                                </div>
+                                <div class="col-md-4">
+                                    [Correct Answer]
+                                </div>
+                            </div>
+                        }
+                        else if (answer.IsCorrectAnswer)
+                        {
+                            <div class="text-success">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-7">
+                                    <span>@answer.AnswerText</span>
+                                </div>
+                                <div class="col-md-4">
+                                    [Correct Answer]
+                                </div>
+                            </div>
+                        }
+                        else if (answer.IsThisUserAnswer)
+                        {
+                            <div class="text-danger">
+                                <div class="col-md-1">  <i class="fa fa-dot-circle-o"></i></div>
+                                <div class="col-md-7">
+                                    <del>@answer.AnswerText</del>
+                                </div>
+                                <div class="col-md-4">[Wrong Answer]</div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="text-danger">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-7">
+                                    <span>@answer.AnswerText</span>
+                                </div>
+                                <div class="col-md-4">[Wrong Answer]</div>
+                            </div>
+                        }
+
+                    }
+                </div>
+            </div>
+        }
+    </fieldset>
+}
+@if (Model.TrueFalseQuestions.Count > 0)
+{
+    <fieldset>
+        <legend>True/False Questions</legend>
+        @foreach (var q in Model.TrueFalseQuestions)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="text-primary">Q (@(questionNumber++)):</span>&nbsp;<span>@q.QuestionText</span>
+                    <span>[Score: @(Model.GetQuestionScore(q))]</span>
+                    <span>[Your Score: @(Model.GetUserScore(q))]</span>
+                </div>
+                <div class="panel-body">
+                    @foreach (var answer in q.Answers)
+                    {
+                        if (answer.IsCorrectAnswer && answer.IsThisUserAnswer)
+                        {
+                            <div class="text-success">
+                                <div class="col-md-1">  <i class="fa fa-dot-circle-o"></i></div>
+                                <div class="col-md-7">
+                                    <span>@answer.AnswerText</span>
+                                </div>
+                                <div class="col-md-4">
+                                    [Correct Answer]
+                                </div>
+                            </div>
+                        }
+                        else if (answer.IsCorrectAnswer)
+                        {
+                            <div class="text-success">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-7">
+                                    <span>@answer.AnswerText</span>
+                                </div>
+                                <div class="col-md-4">
+                                    [Correct Answer]
+                                </div>
+                            </div>
+                        }
+                        else if (answer.IsThisUserAnswer)
+                        {
+                            <div class="text-danger">
+                                <div class="col-md-1">  <i class="fa fa-dot-circle-o"></i></div>
+                                <div class="col-md-7">
+                                    <del>@answer.AnswerText</del>
+                                </div>
+                                <div class="col-md-4">[Wrong Answer]</div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="text-danger">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-7">
+                                    <span>@answer.AnswerText</span>
+                                </div>
+                                <div class="col-md-4">[Wrong Answer]</div>
+                            </div>
+                        }
+
+                    }
+                </div>
+            </div>
+        }
+    </fieldset>
+}

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<OES.Model.Examination.ExamVersion>
+
+@{
+    ViewBag.Title = "ExamsRepot";
+}
+
+<h2>Exams Report </h2>
+
+<div class="panel-body">
+    <div class="table-responsive">
+        
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Semester Title</th>
+                    <th>Course Title</th>
+                    <th>Exam type</th>
+                    <th>Start Date</th>
+                    <th>Duration </th>
+                    <th>Exam Score </th>
+                    <th>Student Score </th>
+                    <th>Student Grade </th>
+                </tr>
+            </thead>
+            <tbody>
+                @{int examcounter = 1; } 
+                @foreach (var item in Model)
+                {
+                    <tr class="success">
+                        <td>@(examcounter++)</td>
+                        <td>@item.Registration.Semester.SemesterTitle</td>
+                        <td>@item.Registration.Course.Title</td>
+                        <td>@item.ExamType</td>
+                        <td>@item.StartDate.ToShortDateString()</td>
+                        <td>@item.Exam.Duration</td>
+                        <td>@item.Exam.TotalScore</td>
+                        <td>@item.StudentScore</td>
+                        <td>@item.StudentGrade</td>
+                        <td>@Html.ActionLink("See Answers", "SeeAnswers", new { id = item.ExamVersionId })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

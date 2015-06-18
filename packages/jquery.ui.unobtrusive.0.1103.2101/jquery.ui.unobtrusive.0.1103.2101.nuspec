@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>jquery.ui.unobtrusive</id>
+    <version>0.1103.2101</version>
+    <title>jquery.ui.unobtrusive</title>
+    <authors>Rodolfo Grave (http://rodolfograve.blogspot.com)</authors>
+    <owners>Rodolfo Grave (http://rodolfograve.blogspot.com)</owners>
+    <licenseUrl>http://plugins.jquery.com/project/unobtrusiveUI/</licenseUrl>
+    <projectUrl>http://plugins.jquery.com/project/unobtrusiveUI/</projectUrl>
+    <iconUrl>https://nugetgallery.blob.core.windows.net/icons/jquery.ui.unobtrusive.0.1103.2101.jpg</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>http://rodolfograve.blogspot.com/2011/03/unobtrusive-jquery-ui.html</description>
+    <summary>http://rodolfograve.blogspot.com/2011/03/unobtrusive-jquery-ui.html</summary>
+    <tags>jquery jquery-ui jquery.ui unobtrusive</tags>
+  </metadata>
+</package>
